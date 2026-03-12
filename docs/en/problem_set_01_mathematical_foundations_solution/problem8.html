@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Problem 8 - Exponential Solution</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #111;
+      color: #eee;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    .controls {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input[type="range"] {
+      width: 300px;
+    }
+    canvas {
+      background: #fff;
+      border: 1px solid #444;
+      display: block;
+      margin-top: 20px;
+    }
+    .values {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Problem 8 — First-order differential equation</h1>
+  <p>Equation: <strong>dy/dt = -ky</strong></p>
+  <p>Solution: <strong>y(t) = y₀ e<sup>-kt</sup></strong></p>
+
+  <div class="controls">
+    <label for="k">k: <span id="kValue">1</span></label>
+    <input id="k" type="range" min="-3" max="5" step="0.1" value="1" />
+
+    <label for="y0">y₀: <span id="y0Value">1</span></label>
+    <input id="y0" type="range" min="-5" max="5" step="0.1" value="1" />
+  </div>
+
+  <div class="values" id="info"></div>
+
+  <canvas id="graph" width="700" height="400"></canvas>
+
+  <script>
+    const kSlider = document.getElementById("k");
+    const y0Slider = document.getElementById("y0");
+    const kValue = document.getElementById("kValue");
+    const y0Value = document.getElementById("y0Value");
+    const info = document.getElementById("info");
+    const canvas = document.getElementById("graph");
+    const ctx = canvas.getContext("2d");
+
+    function y(t, k, y0) {
+      return y0 * Math.exp(-k * t);
+    }
+
+    function drawAxes() {
+      ctx.strokeStyle = "#888";
+      ctx.lineWidth = 1;
+
+      // x-axis
+      ctx.beginPath();
+      ctx.moveTo(40, 200);
+      ctx.lineTo(680, 200);
+      ctx.stroke();
+
+      // y-axis
+      ctx.beginPath();
+      ctx.moveTo(40, 20);
+      ctx.lineTo(40, 380);
+      ctx.stroke();
+
+      ctx.fillStyle = "#000";
+      ctx.font = "14px Arial";
+      ctx.fillText("t", 665, 220);
+      ctx.fillText("y", 20, 30);
+    }
+
+    function drawGraph() {
+      const k = parseFloat(kSlider.value);
+      const y0 = parseFloat(y0Slider.value);
+
+      kValue.textContent = k;
+      y0Value.textContent = y0;
+
+      let behavior = "constant";
+      if (k > 0) behavior = "decay";
+      if (k < 0) behavior = "growth";
+
+      info.innerHTML = `Current solution: <strong>y(t) = ${y0}e<sup>${-k}t</sup></strong> — ${behavior}`;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawAxes();
+
+      ctx.strokeStyle = "blue";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+
+      const tMax = 5;
+      const xScale = 640 / tMax;
+      const yScale = 40; // simple scale
+
+      for (let px = 0; px <= 640; px++) {
+        const t = px / xScale;
+        const val = y(t, k, y0);
+
+        const x = 40 + px;
+        const yCanvas = 200 - val * yScale;
+
+        if (px === 0) {
+          ctx.moveTo(x, yCanvas);
+        } else {
+          ctx.lineTo(x, yCanvas);
+        }
+      }
+
+      ctx.stroke();
+    }
+
+    kSlider.addEventListener("input", drawGraph);
+    y0Slider.addEventListener("input", drawGraph);
+
+    drawGraph();
+  </script>
+</body>
+</html>
