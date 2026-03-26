@@ -1,160 +1,205 @@
-# Problem Set 2
+# Problem 1 – Uniform and uniformly accelerated motion
 
-Mechanics I: Kinematics.
+The equation of motion is:
+
+$$
+x(t)=x_0+v_0 t+\frac12 at^2
+$$
 
 ---
 
-## Problem 1 – Uniform and uniformly accelerated motion
+## 1. Velocity and acceleration
 
-The equation of motion is given:
+Velocity is the derivative of position:
 
 $$
-x(t) = x_0 + v_0 t + \frac{1}{2} a t^2
+v(t)=\frac{dx}{dt}
 $$
 
-1. Determine the velocity $v(t)$ and acceleration $a(t)$.
-2. For the given parameters $x_0=0$, $v_0=5\ \text{m/s}$, $a=-2\ \text{m/s}^2$:
+Differentiate:
 
-    * calculate the stopping time,
-    * the maximum velocity depending on the time and the sign of the acceleration,
-    * calculate the maximum displacement.
+$$
+v(t)=\frac{d}{dt}\left(x_0+v_0 t+\frac12 at^2\right)
+$$
 
-3. Visualize $x(t)$, $v(t)$, $a(t)$.
+$$
+v(t)=v_0+at
+$$
+
+Acceleration is the derivative of velocity:
+
+$$
+a(t)=\frac{dv}{dt}
+$$
+
+$$
+a(t)=a
+$$
+
+So acceleration is constant.
 
 ---
 
-## Problem 2 – Projectile motion
+## 2. Given parameters
 
-A body moves in the Earth's gravitational field without air resistance. Consider projectile motion with an initial velocity $v_0$ and an angle $\alpha$ relative to the horizontal. 
+$$
+x_0=0,\qquad v_0=5\ \text{m/s},\qquad a=-2\ \text{m/s}^2
+$$
 
-* Derive the equations of motion in the horizontal and vertical directions.
-* Determine the time of flight.
-* Determine the maximum height.
-* Determine the range.
-* For what angle is the range maximum?
-* Prepare an animation of the trajectory for different $\alpha$.
+Thus:
+
+$$
+x(t)=5t-\frac12\cdot 2 t^2=5t-t^2
+$$
+
+$$
+v(t)=5-2t
+$$
+
+$$
+a(t)=-2
+$$
 
 ---
 
-## Problem 3 – Elimination of time and interpretation of acceleration
+### a) Stopping time
 
-The path equation is given in parametric form:
+The body stops when:
 
 $$
-x(t)=2t^2, \qquad y(t)=3t^3
+v(t)=0
 $$
 
-* Eliminate the parameter $t$.
-* Draw the trajectory.
-* Calculate $\vec v(t)$, $|\vec v(t)|$, $\vec a(t)$ and $|\vec a(t)|$.
-* Is the acceleration constant?
+So:
+
+$$
+5-2t=0
+$$
+
+$$
+2t=5
+$$
+
+$$
+t=\frac52=2.5\ \text{s}
+$$
 
 ---
 
-## Problem 4 – Circular motion
+### b) Maximum velocity depending on time and sign of acceleration
 
-A body moves in a circle of radius $R$ with angular velocity $\omega$: 
+Since
 
-* Determine $\vec r(t)$, $\vec v(t)$, $\vec a(t)$.
-* Determine $|\vec r(t)|$, $|\vec v(t)|$, $|\vec a(t)|$.
-* Show that the acceleration is centripetal.
-* Visualize the vectors $\vec r$, $\vec v$, $\vec a$.
+$$
+v(t)=v_0+at
+$$
+
+- if \(a>0\), velocity increases with time,
+- if \(a<0\), velocity decreases with time,
+- if \(a=0\), velocity is constant.
+
+In our case:
+
+$$
+a=-2<0
+$$
+
+so velocity decreases in time.
+
+Therefore the maximum velocity occurs at the beginning:
+
+$$
+v_{\max}=v(0)=5\ \text{m/s}
+$$
 
 ---
 
-## Problem 5 – Elliptical motion (purely kinematic)
+### c) Maximum displacement
 
-The path equation is given in parametric form:
+Maximum displacement occurs at stopping time \(t=2.5\).
+
+Substitute into \(x(t)=5t-t^2\):
 
 $$
-x(t)=a\cos(\omega t), \qquad y(t)=b\sin(\omega t)
+x(2.5)=5(2.5)-(2.5)^2
 $$
 
-* Calculate the velocity and acceleration.
-* Is the magnitude of the velocity constant?
-* Where is the velocity maximum?
-* Draw the trajectory and the graphs of $|\vec v(t)|$ and $|\vec a(t)|$.
+$$
+x(2.5)=12.5-6.25
+$$
+
+$$
+x_{\max}=6.25\ \text{m}
+$$
 
 ---
 
-## Problem 6 – Cycloid: trajectory of a point on a rolling circle
+## 3. Interpretation of the graphs
 
-A circle of radius $R$ rolls without slipping along the $x$-axis. A point on the rim of the circle traces a cycloid: 
+### Position
+
 $$
-x(t)=R(\omega t-\sin(\omega t)),\qquad
-y(t)=R(1-\cos(\omega t))
+x(t)=5t-t^2
 $$
 
-1. Determine the velocity vector $\vec v(t)$ and the acceleration $\vec a(t)$.
-2. Calculate $|\vec v(t)|$ and indicate the moments when the point temporarily "stops" relative to the ground.
-3. Determine the maximum values of $|\vec v|$ and $|\vec a|$.
-4. Create an HTML animation:
-   - the circle rolling on the axis,
-   - the point on the rim,
-   - the cycloid trace,
-   - optionally, the vectors $\vec v$ and $\vec a$ at a chosen moment.
-5. Compare the cycloid with circular motion in a reference frame attached to the circle.
+This is a parabola opening downward.
+
+### Velocity
+
+$$
+v(t)=5-2t
+$$
+
+This is a straight line decreasing in time.
+
+### Acceleration
+
+$$
+a(t)=-2
+$$
+
+This is a constant horizontal line.
 
 ---
 
-## Problem 7 – 2D motion with a given acceleration
+## Final results
 
-Given is the acceleration $\vec a = (2, -3)$ and the initial conditions: $\vec v(0)=(1,0)$, $\vec r(0)=(0,0)$
-
-* Determine $\vec v(t)$.
-* Determine $\vec r(t)$.
-* Draw the trajectory, velocity vector, and acceleration vector at a few selected moments in time, or create an HTML animation.
-
----
-
-## Problem 8 – Relative motion
-
-Body A moves with velocity $\vec v_A=(3,1)$, body B with velocity $\vec v_B=(1,-2)$.
-
-1. Determine the relative velocity $\vec v_{A/B}$.
-2. Determine the direction of the relative motion.
-3. Visualize the motion of both bodies in:
-    - the reference frame attached to the origin of the coordinate system,
-    - the reference frame attached to body A,
-    - the reference frame attached to body B.
-
-It is best to do this in the form of an HTML animation, but static graphs of trajectories and velocity vectors can also be drawn.
-
----
-
-## Problem 9 – Change of reference frame (Copernican model → geocentric description)
-
-Earth and Mars move in circles around the Sun in the same direction.
-
-Assume the model (heliocentric system): 
 $$
-\vec r_Z(t) = R_Z\,\bigl(\cos(\omega_Z t),\sin(\omega_Z t)\bigr)
+v(t)=v_0+at
 $$
 
 $$
-\vec r_M(t) = R_M\,\bigl(\cos(\omega_M t),\sin(\omega_M t)\bigr)
+a(t)=a
 $$
 
-1. Draw both motions in the heliocentric system (Sun in the center).
-2. Determine the position of Mars relative to Earth (geocentric system):
+For the given data:
 
-      $$
-      \vec r_{M/Z}(t)=\vec r_M(t)-\vec r_Z(t)
-      $$
+$$
+x(t)=5t-t^2
+$$
 
-    * Explicitly write down the components $x_{M/Z}(t)$, $y_{M/Z}(t)$.
+$$
+v(t)=5-2t
+$$
 
-3. (HTML) Create an animation with two panels:
-    * panel A: heliocentric motion (Earth and Mars on circles),
-    * panel B: trajectory of Mars as seen from Earth (trace of $\vec r_{M/Z}(t)$).
+$$
+a(t)=-2
+$$
 
----
+Stopping time:
 
-## Problem 10 – Analysis of motion from numerical data
+$$
+t_{\text{stop}}=2.5\ \text{s}
+$$
 
-For the measurement data $x(t)=t+\frac{1}{20}t^2$ on the interval $t\in[0,10]$ with a time step of $\Delta t=0.1$:
+Maximum velocity:
 
-1. Approximate the velocity using the finite difference method.
-2. Approximate the acceleration using the finite difference method.
-3. Compare with the analytical solution (if known).
-4. Investigate the effect of the time step on accuracy.
+$$
+v_{\max}=5\ \text{m/s}
+$$
+
+Maximum displacement:
+
+$$
+x_{\max}=6.25\ \text{m}
+$$
